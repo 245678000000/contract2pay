@@ -1,0 +1,27 @@
+# Render Blueprint — deploy with the "New +" → "Blueprint" flow after connecting the repo,
+# or create a Web Service manually with: build `npm ci && npm run build`, start `npm start`.
+services:
+  - type: web
+    name: contract2pay
+    runtime: node
+    plan: starter
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.11.0
+      - key: PAYPAL_ENV
+        value: sandbox
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: PAYPAL_WEBHOOK_ID
+        sync: false
+      - key: AI_BASE_URL
+        value: https://api.deepseek.com
+      - key: AI_API_KEY
+        sync: false
+      - key: AI_MODEL
+        value: deepseek-chat
